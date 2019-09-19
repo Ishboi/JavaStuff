@@ -18,7 +18,7 @@ public class Main {
         bank.addCustomerTransaction("Adelaide", "", 12.44);
         bank.addCustomerTransaction("Adelaide", "Mike", 1.65);
 
-        bank.listCustomers("Adelaide", false);
+        bank.listCustomers("Adelaide", true);
 
 
     }
