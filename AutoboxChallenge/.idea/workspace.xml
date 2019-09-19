@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ab96a94d-778e-4033-90a9-f2db6768f6f7" name="Default Changelist" comment="" />
+    <list default="true" id="ab96a94d-778e-4033-90a9-f2db6768f6f7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +24,7 @@
       </list>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="ProjectId" id="1QWBmbjLRHbbliQnl4dBc27AghF" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -64,6 +67,14 @@
       <option name="presentableId" value="Default" />
       <updated>1567876631239</updated>
     </task>
+    <task id="LOCAL-00001" summary="Tired of this bad explained challenge">
+      <created>1568908566922</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1568908566922</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -100,5 +111,10 @@
         <option value="1" />
       </set>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Tireed of this bad explained challenge" />
+    <MESSAGE value="Tired of this bad explained challenge" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tired of this bad explained challenge" />
   </component>
 </project>
