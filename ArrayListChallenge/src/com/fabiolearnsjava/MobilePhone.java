@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class MobilePhone {
 
     private static Scanner input = new Scanner(System.in);
-    //private static ArrayList<Contacts> Cont2actsList = new ArrayList<Contacts>();
+    //private static ArrayList<Contacts> ContactsList = new ArrayList<Contacts>();
     private static Contacts ContactsList = new Contacts();
 
     public static void main(String[] args) {
