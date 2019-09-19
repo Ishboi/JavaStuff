@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ff83f4ca-f5f1-4fff-a187-2bf0c603fda5" name="Default Changelist" comment="" />
+    <list default="true" id="ff83f4ca-f5f1-4fff-a187-2bf0c603fda5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AutoboxChallenge/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../JavaPrograms/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/fabiolearnsjava/MobilePhone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/fabiolearnsjava/MobilePhone.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AutoboxChallenge/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AutoboxChallenge/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AutoboxChallenge/src/com/fabiolearnsjava/Bank.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AutoboxChallenge/src/com/fabiolearnsjava/Bank.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AutoboxChallenge/src/com/fabiolearnsjava/Branches.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AutoboxChallenge/src/com/fabiolearnsjava/Branches.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AutoboxChallenge/src/com/fabiolearnsjava/Customers.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AutoboxChallenge/src/com/fabiolearnsjava/Customers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaPrograms/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../JavaPrograms/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
