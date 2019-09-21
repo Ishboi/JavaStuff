@@ -18,9 +18,12 @@ public class Demo {
         addInOrder(placesToVisit, "Darwin");
         printList(placesToVisit);
 
+
         addInOrder(placesToVisit, "Alice Springs");
         addInOrder(placesToVisit, "Darwin");
         printList(placesToVisit);
+        LinkedList<String> outputPlaces = getDestinations(placesToVisit);
+        System.out.println("\t\n*****" + outputPlaces + "*****\n\t");
         visit(placesToVisit);
 
     }
@@ -33,6 +36,13 @@ public class Demo {
         System.out.println("=========================");
     }
 
+    private static LinkedList<String> getDestinations(LinkedList<String> linkedList) {
+        return linkedList;
+//        ListIterator<String> outputListIterator = linkedList.listIterator();
+//        while(outputListIterator.hasNext()) {
+//            System.out.println("\t\n*******" + outputListIterator.next() + "******\n\t");
+//        }
+    }
     private static boolean addInOrder(LinkedList<String> linkedList, String newCity) {
         ListIterator<String> stringListIterator = linkedList.listIterator();
 
