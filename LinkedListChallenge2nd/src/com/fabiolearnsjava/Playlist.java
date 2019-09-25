@@ -44,16 +44,8 @@ public class Playlist {
     }
 
 
-    //currently trying to fix it because i need it
     public void addSongToPlaylist(String songName, double duration) {
-//        Album album = findAlbumBySong(songName);
-//
-//        if(album != null) {
-        //this.songsPlaylist = new LinkedList<String>();
         this.songsPlaylist.add(songName);// just need this I think, since I alreaddy validate if the album exists before
-//            return true;
-//        }
-//        return false;
     }
 
     public Album findAlbum(String albumName) {
@@ -106,7 +98,7 @@ public class Playlist {
         ListIterator<String> songIterator = this.songsPlaylist.listIterator();
         System.out.println("======================================");
         while(songIterator.hasNext()) {
-            System.out.println("Song number " + songIterator + " is called " + songIterator.next());
+            System.out.println("Song number " + (songIterator.nextIndex()+1) + " is called " + songIterator.next());
         }
         System.out.println("======================================");
     }

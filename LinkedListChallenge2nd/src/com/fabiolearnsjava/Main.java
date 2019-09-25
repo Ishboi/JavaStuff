@@ -66,8 +66,6 @@ public class Main {
                     if(findPlayList(playlistName) != null) {
                         int playlistIndex = bunchOfPlaylists.indexOf(findPlayList(playlistName));
                         bunchOfPlaylists.get(playlistIndex).printPlaylist();
-//                        Playlist comparison = findPlayList(playlistName);
-//                        comparison.printPlaylist();
                     } else {
                         System.out.println("Playlist " + playlistName + " not found.");
                     }
@@ -87,7 +85,7 @@ public class Main {
                     System.out.println("Type name of playlist to play.");
                     playlistName = input.nextLine();
                     if(findPlayList(playlistName) != null) {
-                        playPlaylist(playlistName); // last thing i've made but the number of the song just outputs memory address
+                        playPlaylist(playlistName);
                     } else {
                         System.out.println("Playlist " + playlistName + " not found.");
                     }
@@ -118,7 +116,7 @@ public class Main {
         if(bunchOfPlaylists.isEmpty()) {
             System.out.println("Success adding " + playlistName + ".");
         }
-        Playlist playlist = findPlayList(playlistName); // if i create a new one it inserts into the first one, also if i create another playlist I can't call the second playlist to print
+        Playlist playlist = findPlayList(playlistName);
         int playlistIndex = bunchOfPlaylists.indexOf(playlist);
         while(!quit) {
             System.out.print("Please type name of song to add to playlist or quit to exit: ");
@@ -129,11 +127,9 @@ public class Main {
             }
             Album checkedAlbum = bunchOfPlaylists.get(playlistIndex).findAlbumBySong(songName, bunchOfAlbums);
             if(checkedAlbum != null) {
-                //if(bunchOfPlaylists.get(playlistIndex).addSongToPlaylist(songName)) { // don't need this since I already check if album exists I think
-                    double duration = checkedAlbum.getDurationOfSong(songName);
-                    bunchOfPlaylists.get(playlistIndex).addSongToPlaylist(songName, duration);
-                    System.out.println("Success adding " + songName + " to playlist " + playlistName + ".");//was here trying to create playlist
-                //}
+                double duration = checkedAlbum.getDurationOfSong(songName);
+                bunchOfPlaylists.get(playlistIndex).addSongToPlaylist(songName, duration);
+                System.out.println("Success adding " + songName + " to playlist " + playlistName + ".");
             }
         }
         System.out.println("Finished adding songs to playlist.");
@@ -217,7 +213,7 @@ public class Main {
         Playlist comparison = findPlayList(playlist);
         ListIterator<String> listPlaylist = comparison.getSongsPlaylist().listIterator();
 
-        if(comparison.getSongsPlaylist().isEmpty()) {
+        if(comparison.getSongsPlaylist().isEmpty()) { // skips first one in playlist, also cant remove songs from playlist need to fix it
             System.out.println("No songs in playlist.");
             return;
         } else {

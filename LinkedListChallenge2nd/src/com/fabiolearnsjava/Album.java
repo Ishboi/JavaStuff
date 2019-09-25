@@ -72,13 +72,6 @@ public class Album {
 
             }
         }
-
-//        while(songListIterator.hasNext()) {
-//            if(songListIterator.next().equals(songName)) {
-//                System.out.println("Song " + songName + " was found.");
-//                return songName;
-//            }
-//        }
         return null;
     }
 
