@@ -106,13 +106,16 @@ public class Playlist {
 
 
 
-    public void removeSongFromPlaylist(String song) {
+    public boolean removeSongFromPlaylist(String song) {
         ListIterator<String> songIterator = this.songsPlaylist.listIterator();
         while(songIterator.hasNext()) {
-            if(songIterator.next().toUpperCase().equals(song)) {
-               songsPlaylist.remove(song);
+            int index = songIterator.nextIndex();
+            if(songIterator.next().toUpperCase().equals(song.toUpperCase())) {
+               songsPlaylist.remove(index);
+               return true;
             }
         }
+        return false;
     }
 
 

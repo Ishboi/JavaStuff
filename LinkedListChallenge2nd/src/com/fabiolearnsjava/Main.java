@@ -14,12 +14,8 @@ public class Main {
     private static LinkedList<Album> bunchOfAlbums = new LinkedList<Album>();
     private static boolean quit = false;
     private static boolean goingForward = true;
-    private static ListIterator<Playlist> playlistIterator = bunchOfPlaylists.listIterator();
-    private static ListIterator<Album> albumIterator = bunchOfAlbums.listIterator();
 
     public static void main(String[] args) {
-        ListIterator<Playlist> listIterator = bunchOfPlaylists.listIterator();
-        ListIterator<Album> albumIterator = bunchOfAlbums.listIterator();
         /**
          * testing purposes
          */
@@ -28,6 +24,36 @@ public class Main {
         bunchOfAlbums.get(0).newSong("chairpoop", 4.30);
         bunchOfAlbums.get(0).newSong("barkateveryone", 5.70);
         bunchOfAlbums.get(0).newSong("bottlecap", 10.70);
+        createNewAlbum("fabio");
+        bunchOfAlbums.get(1).newSong("badum", 3.40);
+        bunchOfAlbums.get(1).newSong("junior", 4.30);
+        bunchOfAlbums.get(1).newSong("likes", 5.70);
+        bunchOfAlbums.get(1).newSong("programming", 10.70);
+
+        createNewAlbum("first");
+        bunchOfAlbums.get(2).newSong("chairpoop", 4.30);
+        bunchOfAlbums.get(2).newSong("bottlecap", 10.70);
+        createNewAlbum("second");
+        bunchOfAlbums.get(3).newSong("waterbottle", 3.40);
+        bunchOfAlbums.get(3).newSong("badum", 3.40);
+        bunchOfAlbums.get(3).newSong("likes", 5.70);
+        bunchOfAlbums.get(3).newSong("programming", 10.70);
+        bunchOfAlbums.get(3).newSong("bottlecap", 10.70);
+
+        bunchOfPlaylists.get(2).addSongToPlaylist("waterbottle", 3.40);
+        bunchOfPlaylists.get(2).addSongToPlaylist("bottlecap", 3.40);
+        bunchOfPlaylists.get(3).addSongToPlaylist("waterbottle", 3.40);
+        bunchOfPlaylists.get(3).addSongToPlaylist("badum", 3.40);
+        bunchOfPlaylists.get(3).addSongToPlaylist("likes", 5.70);
+        bunchOfPlaylists.get(3).addSongToPlaylist("programming", 10.70);
+        bunchOfPlaylists.get(3).addSongToPlaylist("bottlecap", 10.70);
+
+
+
+
+
+
+
         /**
          * End of testing
          */
@@ -48,12 +74,12 @@ public class Main {
             input.nextLine();
             switch(action) {
                 case 1:
-                    System.out.print("Type name of new playlist: ");
+                    System.out.print("Type name of new playlist > ");
                     playlistName = input.nextLine();
                     createNewPlayList(playlistName);
                     break;
                 case 2:
-                    System.out.println("Type name of new album");
+                    System.out.print("Type name of new album > ");
                     albumName = input.nextLine();
                     createNewAlbum(albumName);
                     break;
@@ -61,7 +87,12 @@ public class Main {
                     createNewSong();
                     break;
                 case 4:
-                    System.out.println("Type name of playlist.");
+                    System.out.print("Type name of playlist > ");
+                    playlistName = input.nextLine();
+                    addSongToPlaylist(playlistName);
+
+                case 5:
+                    System.out.print("Type name of playlist > ");
                     playlistName = input.nextLine();
                     if(findPlayList(playlistName) != null) {
                         int playlistIndex = bunchOfPlaylists.indexOf(findPlayList(playlistName));
@@ -70,8 +101,8 @@ public class Main {
                         System.out.println("Playlist " + playlistName + " not found.");
                     }
                     break;
-                case 5:
-                    System.out.println("Type name of album.");
+                case 6:
+                    System.out.print("Type name of album > ");
                     String albumName = input.nextLine();
                     if(findAlbum(albumName) != null) {
                         int albumIndex = bunchOfAlbums.indexOf(findAlbum(albumName));
@@ -81,8 +112,8 @@ public class Main {
                     }
                     break;
 
-                case 6:
-                    System.out.println("Type name of playlist to play.");
+                case 7:
+                    System.out.print("Type name of playlist to play > ");
                     playlistName = input.nextLine();
                     if(findPlayList(playlistName) != null) {
                         playPlaylist(playlistName);
@@ -90,15 +121,31 @@ public class Main {
                         System.out.println("Playlist " + playlistName + " not found.");
                     }
                     break;
+                case 8:
+                    printPlaylists(false);
+                    break;
                 case 9:
-                    System.out.println("Type name of playlist you want to remove song from.");
-                    playlistName = input.nextLine();
-                    System.out.println("Type name of song to remove from playlist");
-                    songName = input.nextLine();
-                    Playlist removeSongFromPlaylist = findPlayList(playlistName);
-                    removeSongFromPlaylist.removeSongFromPlaylist(songName);
+                    printPlaylists(true);
                     break;
                 case 10:
+                    System.out.print("Type name of playlist you want to remove song from > ");
+                    playlistName = input.nextLine();
+                    int playlistIndex = bunchOfPlaylists.indexOf(findPlayList(playlistName));
+                    bunchOfPlaylists.get(playlistIndex).printPlaylist();
+                    System.out.print("Type name of song to remove from playlist or quit to exit >");
+                    songName = input.nextLine();
+                    if(songName.toUpperCase().equals("QUIT")) {
+                        System.out.println("Action canceled.");
+                        break;
+                    }
+                    Playlist removeSongFromPlaylist = findPlayList(playlistName);
+                    if(removeSongFromPlaylist.removeSongFromPlaylist(songName)) {
+                        System.out.println("Success removing " + songName + " from " + playlistName + ".");
+                    } else {
+                        System.out.println("Song in " + playlistName + " not found.");
+                    }
+                    break;
+                case 11:
                     System.out.println("Bye.");
                     quit = true;
                     break;
@@ -108,6 +155,28 @@ public class Main {
             }
         }
 
+    }
+
+    private static void addSongToPlaylist(String playlistName) {
+        boolean quit = false;
+        Playlist playlist = findPlayList(playlistName);
+        int playlistIndex = bunchOfPlaylists.indexOf(playlist);
+        while(!quit) {
+            System.out.print("Please type name of song to add to playlist or quit to exit: ");
+            String songName = input.nextLine();
+            if(songName.toUpperCase().equals("QUIT")) {
+                quit = true;
+                break;
+            }
+
+            Album checkedAlbum = bunchOfPlaylists.get(playlistIndex).findAlbumBySong(songName, bunchOfAlbums);
+            if(checkedAlbum != null) {
+                double duration = checkedAlbum.getDurationOfSong(songName);
+                bunchOfPlaylists.get(playlistIndex).addSongToPlaylist(songName, duration);
+                System.out.println("Success adding " + songName + " to playlist " + playlistName + ".");
+            }
+        }
+        System.out.println("Finished adding songs to playlist.");
     }
 
     private static void createNewPlayList(String playlistName) {
@@ -145,21 +214,21 @@ public class Main {
 
     private static void createNewSong() {
         boolean quit = false;
-        System.out.println("Please type name of album for this song.");
+        System.out.print("Please type name of album for this song >");
         String albumName = input.nextLine(); // if i type here something that doesn't exist it crashes with nullpointerexception gotta check this
         Album album = findAlbum(albumName);
         int albumIndex = bunchOfAlbums.indexOf(album);
         double songDuration;
         if(album.getAlbumName().equals(albumName)) {
             while(!quit) {
-                    System.out.print("Type name of new song or type quit to exit - \t");
+                    System.out.print("Type name of new song or type quit to exit > \t");
                     String songName = input.nextLine();
                     if(songName.toUpperCase().equals("QUIT") || songName.toUpperCase().equals("EXIT")) {
                         quit = true;
                         System.out.println("Finished adding songs to album - " + albumName + ".");
                         break;
                     }
-                    System.out.println("Please type the duration for this song.");
+                    System.out.print("Please type the duration for this song >");
                     boolean success = false;
                     while(!success) {
                         try {
@@ -178,13 +247,12 @@ public class Main {
                     }
             }
         } else{
-            System.out.println("Album needs to exist before creating a new song");
+            System.out.println("Album needs to exist before creating a new song.");
         }
     }
 
     private static Album findAlbum(String albumName) {
         ListIterator<Album> albumsIterator = bunchOfAlbums.listIterator();
-        int indexAlbum = bunchOfAlbums.indexOf(albumName);
         while(albumsIterator.hasNext()) {
             Album comparison = albumsIterator.next();
             if(comparison.getAlbumName().toUpperCase().equals(albumName.toUpperCase())) {
@@ -207,6 +275,22 @@ public class Main {
         return null;
     }
 
+    private static void printPlaylists(boolean album) {
+        System.out.println("======================================");
+        if(album) {
+            ListIterator<Album> playlistIterator = bunchOfAlbums.listIterator();
+                while(playlistIterator.hasNext()) {
+                    System.out.println("Album number " + (playlistIterator.nextIndex()+1) + " is called " + playlistIterator.next().getAlbumName());
+                }
+        } else {
+            ListIterator<Playlist> playlistIterator = bunchOfPlaylists.listIterator();
+            while(playlistIterator.hasNext()) {
+                System.out.println("Playlist number " + (playlistIterator.nextIndex()+1) + " is called " + playlistIterator.next().getPlaylistName());
+            }
+        }
+        System.out.println("======================================");
+    }
+
     private static void playPlaylist(String playlist) {
         Scanner input = new Scanner (System.in);
         boolean quit = false;
@@ -215,57 +299,65 @@ public class Main {
 
         if(comparison.getSongsPlaylist().isEmpty()) { // skips first one in playlist, also cant remove songs from playlist need to fix it
             System.out.println("No songs in playlist.");
+            printButtons();
             return;
         } else {
-            System.out.println("Now playing " + listPlaylist.next());
             printButtons();
         }
 
         while(!quit) {
-            int action = input.nextInt();
-            input.nextLine();
-            switch(action) {
-                case 1:
-                    if(goingForward) {
+            System.out.print("> ");
+            int action;
+            try {
+                action = input.nextInt();
+                input.nextLine();
+                switch(action) {
+                    case 1:
+                        System.out.println("\n***********Playing first song " + listPlaylist.next() + ".***********\n");
+                        break;
+
+                    case 2:
+                        if(goingForward) {
+                            if(listPlaylist.hasPrevious()) {
+                                listPlaylist.previous();
+                            }
+                            goingForward = false;
+                        }
                         if(listPlaylist.hasPrevious()) {
-                            listPlaylist.previous();
+                            System.out.println("\n***********Now playing " + listPlaylist.previous() + ".***********\n");
+                        } else {
+                            System.out.println("\n***********We are at the beginning of playlist.***********\n");
+                            goingForward = true;
                         }
-                        goingForward = false;
-                    }
-                    if(listPlaylist.hasPrevious()) {
-                        System.out.println("Now playing " + listPlaylist.previous());
-                    } else {
-                        System.out.println("We are at the beginning of playlist.");
-                        goingForward = true;
-                    }
-                    break;
-                case 2:
-                    if(listPlaylist.hasNext()) {
-                        listPlaylist.next();
+                        break;
+                    case 3:
                         listPlaylist.previous();
-                    } else {
-                        listPlaylist.previous();
-                        listPlaylist.next();
-                    }
-                    break;
-                case 3:
-                    if(!goingForward) {
+                        System.out.println("\n***********Repeating song " + listPlaylist.next() + ".***********\n");
+                        break;
+                    case 4:
+                        if(!goingForward) {
+                            if(listPlaylist.hasNext()) {
+                                listPlaylist.next();
+                            }
+                            goingForward = true;
+                        }
                         if(listPlaylist.hasNext()) {
-                            listPlaylist.next();
+                            System.out.println("\n***********Now playing "  + listPlaylist.next() + ".***********\n");
+                        } else {
+                            System.out.println("\n***********Reached end of playlist.***********\n");
+                            goingForward = false;
                         }
-                        goingForward = true;
-                    }
-                    if(listPlaylist.hasNext()) {
-                        System.out.println("Now playing "  + listPlaylist.next());
-                    } else {
-                        System.out.println("Reached end of playlist");
-                        goingForward = false;
-                    }
-                    break;
-                case 4:
-                    quit = true;
-                    System.out.println("Going back.");
-                    break;
+                        break;
+                    case 5:
+                        quit = true;
+                        System.out.println("Going back.");
+                        break;
+                }
+
+            } catch (InputMismatchException exception) {
+                printButtons();
+                System.out.println("Please insert a valid number.");
+                input.nextLine();
             }
         }
 
@@ -273,21 +365,25 @@ public class Main {
     }
 
     private static void printButtons() {
-        System.out.println(" \n\t 1 - Backwards." +
-                            "\n\t 2 - Repeat." +
-                            "\n\t 3 - Forward." +
-                            "\n\t 4 - To quit.");
+        System.out.println(" \t 1 - Play playlist" +
+                            "\n\t 2 - Backwards." +
+                            "\n\t 3 - Repeat." +
+                            "\n\t 4 - Forward." +
+                            "\n\t 5 - To quit.");
     }
 
     private static void printActions() {
         System.out.println(" \t 1 - To create new Playlist.\n" +
                             "\t 2 - To create new album.\n" +
                             "\t 3 - To create new Song.\n" +
-                            "\t 4 - To display songs from playlist.\n" +
-                            "\t 5 - To display songs from album.\n" +
-                            "\t 6 - To play playlist.\n" +
-                            "\t 9 - To remove song from playlist.\n" +
-                            "\t 10 - To quit.\n");
+                            "\t 4 - To add song to playlist.\n" +
+                            "\t 5 - To display songs from playlist.\n" +
+                            "\t 6 - To display songs from album.\n" +
+                            "\t 7 - To play playlist.\n" +
+                            "\t 8 - To display existing playlists.\n" +
+                            "\t 9 - To display existing albums.\n" +
+                            "\t 10 - To remove song from playlist.\n" +
+                            "\t 11 - To quit.\n");
     }
 
 

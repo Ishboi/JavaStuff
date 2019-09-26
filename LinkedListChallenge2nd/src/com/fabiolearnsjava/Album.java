@@ -30,7 +30,6 @@ public class Album {
             return -1.0;
         }
         ListIterator<Song> songListIterator = songs.listIterator();
-        boolean songFound = false;
         while(songListIterator.hasNext()) {
             if(songListIterator.next().getSong().toUpperCase().equals(songName.toUpperCase())) {
                 double duration = songListIterator.previous().getDuration();
@@ -81,7 +80,6 @@ public class Album {
             return null;
         }
         ListIterator<Song> songListIterator = songs.listIterator();
-        boolean songFound = false;
         while(songListIterator.hasNext()) {
             if(songListIterator.next().equals(songName)) {
                 System.out.println("Song " + songName + " was found.");
