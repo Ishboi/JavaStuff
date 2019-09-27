@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Main {
 
-    private static ArrayList<Album> albums = new ArrayList<Album>();
+    private static List<Album> albums = new ArrayList<Album>();
     public static void main(String[] args) {
         Album album = new Album("Stormbringer", "Deep Purple");
         album.addSong("StormBringer", 4.6);
@@ -30,7 +30,7 @@ public class Main {
         album.addSong("Night of the long knives", 5.12);
         albums.add(album);
 
-        LinkedList<Song> playlist = new LinkedList<Song>();
+        List<Song> playlist = new ArrayList<Song>();
         albums.get(0).addToPlaylist("You can't do it right", playlist);
         albums.get(0).addToPlaylist("Holy man", playlist);
         albums.get(0).addToPlaylist("Speed king", playlist); // Does not exist
@@ -43,7 +43,7 @@ public class Main {
         play(playlist);
     }
 
-    private static void play(LinkedList<Song> playList) {
+    private static void play(List<Song> playList) {
         Scanner scanner = new Scanner(System.in);
         boolean quit = false;
         boolean forward = true;
@@ -143,7 +143,7 @@ public class Main {
                 "6 - delete current song from playlist");
     }
 
-    private static void printList(LinkedList<Song> playList) {
+    private static void printList(List<Song> playList) {
         Iterator<Song> iterator = playList.iterator();
         System.out.println("================================");
         while (iterator.hasNext()) {
