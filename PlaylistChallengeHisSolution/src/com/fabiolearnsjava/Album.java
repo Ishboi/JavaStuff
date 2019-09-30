@@ -11,7 +11,7 @@ public class Album {
     //private ArrayList<Song> songs;
     private SongList songList;
 
-    class SongList {
+    private class SongList {
         private ArrayList<Song> songs = new ArrayList<>();
         public boolean addSong(String title, double duration) {
             if(findSong(title) == null) {
