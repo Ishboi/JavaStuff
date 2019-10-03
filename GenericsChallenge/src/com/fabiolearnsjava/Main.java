@@ -35,7 +35,7 @@ public class Main {
         first.addTeam(box, 4);
         first.addTeam(box2, 3);
         first.addTeam(box3, 1);
-        Collections.sort((List<? extends League>) first); // doesn't work
+         // doesn't work
         first.showTeams();
 
 
