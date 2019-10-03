@@ -35,6 +35,11 @@ public class Main {
         first.addTeam(box, 4);
         first.addTeam(box2, 3);
         first.addTeam(box3, 1);
+
+        box.matchResult(box2,1, 0);
+        box.matchResult(box3,32, 8);
+        box2.matchResult(box2,2, 1);
+
          // doesn't work
         first.showTeams();
 

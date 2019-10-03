@@ -45,7 +45,8 @@ public class League<L extends Sport> implements Comparable<L> {
     public void showTeams() {
         Collections.sort(teams);
         for (Team<L> currentTeam : teams) {
-            System.out.println("Current team is - " + currentTeam.getName());
+            System.out.println("Team with - " + currentTeam.won + " matches won"
+                    + " is " + currentTeam.getName());
         }
     }
 
