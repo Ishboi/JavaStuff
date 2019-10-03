@@ -1,6 +1,8 @@
+package com.fabiolearnsjava;
+
 import java.util.ArrayList;
 
-public class Team<T extends Player> implements  Comparable<Team<T>> {
+public class Team<T extends Sport> implements  Comparable<Team<T>> {
     private String name;
     int played = 0;
     int won = 0;
