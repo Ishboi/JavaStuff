@@ -7,7 +7,6 @@ public class ScopeCheck {
 
     public ScopeCheck() {
         System.out.println("ScopeCheck created, publicVar = " + publicVar + ": privateVar = " + varOne);
-        this.publicVar = publicVar;
     }
 
     public int getVarOne() {
@@ -20,6 +19,12 @@ public class ScopeCheck {
             System.out.println(i + " times two is " + i * varTwo);
         }
     }
+
+    public void useInner() {
+        InnerClass innerClass = new InnerClass();
+        System.out.println("varThree from outer class: " + innerClass.varThree);
+    }
+
     public class InnerClass {
         public int varThree = 3;
 
